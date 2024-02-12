@@ -1,0 +1,28 @@
+R_DEF: Internal format may change without notice
+local
+array countires
+color black
+color white
+drawable border
+drawable button_shape
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id eng
+id female
+id gender_group
+id hin
+id male
+id person_age
+id person_name
+id result
+id spinner
+id switch_tog
+id tam
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.UIComponents
+style Theme.UIComponents
+xml backup_rules
+xml data_extraction_rules

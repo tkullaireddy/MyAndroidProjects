@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="countires">
+        <item>Select Your country</item>
+        <item>India</item>
+        <item>Srilanka</item>
+        <item>USA</item>
+        <item>UK</item>
+        <item>Singapore</item>
+        <item>Pakistan</item>
+        <item>Russia</item>
+        <item>Germany</item>
+        <item>China</item>
+        <item>Japan</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">UI Components</string>
+    <style name="Base.Theme.UIComponents" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.UIComponents" parent="Base.Theme.UIComponents"/>
+</resources>
