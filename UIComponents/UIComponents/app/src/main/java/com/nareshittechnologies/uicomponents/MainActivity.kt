@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.Spinner
+import android.widget.SpinnerAdapter
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -37,7 +41,9 @@ class MainActivity : AppCompatActivity() {
         val pn:TextInputLayout = findViewById(R.id.person_name)
         val pa:TextInputLayout = findViewById(R.id.person_age)
         val result:TextView = findViewById(R.id.result)
+        val shift = findViewById<SwitchCompat>(R.id.switch_tog)
 
+        val cs:Spinner = findViewById(R.id.spinner)
         val gm:RadioButton=findViewById(R.id.female)
         var g:String = "Male"
         if (gm.isChecked) g="Female"
@@ -45,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         outState.putString("Age",pa.editText?.text.toString())
         outState.putString("Gender",g)
         outState.putString("result",result.text.toString())
+        outState.putInt("Country",cs.selectedItemPosition)
+        outState.putString("Switch",shift.isChecked.toString())
     }
 
 
@@ -60,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         val result:TextView = findViewById(R.id.result)
         val rbm: RadioButton = findViewById(R.id.male)
         val rbf:RadioButton=findViewById(R.id.female)
+        val cs:Spinner = findViewById(R.id.spinner)
+        val shift = findViewById<SwitchCompat>(R.id.switch_tog)
 
         pn.setText( outState.getString("Name"))
         pa.setText(outState.getString("Age"))
@@ -67,20 +77,29 @@ class MainActivity : AppCompatActivity() {
         if (outState.getString("Gender") =="Male") rbm.isChecked=true
         else rbf.isChecked=true
 
+        cs.setSelection(outState.getInt("Country"))
+
+        shift.isChecked = ( outState.getString("Switch")=="True")
     }
     // This function is called after filling the data on the other views and button is clicked.
     fun registerWithData(view: View) {
 
         val pn:TextInputLayout = findViewById(R.id.person_name)
         val pa:TextInputLayout = findViewById(R.id.person_age)
+        val cs:Spinner = findViewById(R.id.spinner)
 
+        var country:String = cs.selectedItem.toString()
 
         val gm:RadioButton=findViewById(R.id.female)
         var g:String = "Male"
         if (gm.isChecked) g="Female"
 
+
+
         val result:TextView = findViewById(R.id.result)
-        result.text = "${pn.editText?.text.toString()}  ${pa.editText?.text.toString()} $g"
+        result.text = "${pn.editText?.text.toString()}  ${country} ${pa.editText?.text.toString()} $g"
+
+
 
     }
 }

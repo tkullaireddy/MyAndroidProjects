@@ -25,10 +25,10 @@ com.nareshittechnologies.uicomponents.app-profileinstaller-1.3.0-23 C:\Users\tku
 com.nareshittechnologies.uicomponents.app-appcompat-resources-1.6.1-24 C:\Users\tkull\.gradle\caches\transforms-3\f880cc1c3e36c0c4b347845a9fccfd59\transformed\appcompat-resources-1.6.1\res
 com.nareshittechnologies.uicomponents.app-lifecycle-process-2.6.1-25 C:\Users\tkull\.gradle\caches\transforms-3\f96262b739e7235dd07a97d871a1b1da\transformed\lifecycle-process-2.6.1\res
 com.nareshittechnologies.uicomponents.app-core-ktx-1.12.0-26 C:\Users\tkull\.gradle\caches\transforms-3\ff6587493ebdc791c50ad8995c78d2de\transformed\core-ktx-1.12.0\res
-com.nareshittechnologies.uicomponents.app-pngs-27 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\build\generated\res\pngs\debug
-com.nareshittechnologies.uicomponents.app-resValues-28 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\build\generated\res\resValues\debug
-com.nareshittechnologies.uicomponents.app-packageDebugResources-29 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.nareshittechnologies.uicomponents.app-packageDebugResources-30 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.nareshittechnologies.uicomponents.app-merged_res-31 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\build\intermediates\merged_res\debug
-com.nareshittechnologies.uicomponents.app-debug-32 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\debug\res
-com.nareshittechnologies.uicomponents.app-main-33 E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\res
+com.nareshittechnologies.uicomponents.app-pngs-27 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\build\generated\res\pngs\debug
+com.nareshittechnologies.uicomponents.app-resValues-28 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\build\generated\res\resValues\debug
+com.nareshittechnologies.uicomponents.app-packageDebugResources-29 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.nareshittechnologies.uicomponents.app-packageDebugResources-30 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.nareshittechnologies.uicomponents.app-merged_res-31 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\build\intermediates\merged_res\debug
+com.nareshittechnologies.uicomponents.app-debug-32 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\debug\res
+com.nareshittechnologies.uicomponents.app-main-33 E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\res

@@ -20,43 +20,43 @@
 15-->[androidx.core:core:1.12.0] C:\Users\tkull\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
 16
 17    <application
-17-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:5:5-26:19
+17-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:5:5-26:19
 18        android:allowBackup="true"
-18-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:6:9-35
+18-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:6:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 19-->[androidx.core:core:1.12.0] C:\Users\tkull\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 20        android:dataExtractionRules="@xml/data_extraction_rules"
-20-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:7:9-65
+20-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:7:9-65
 21        android:debuggable="true"
 22        android:extractNativeLibs="false"
 23        android:fullBackupContent="@xml/backup_rules"
-23-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:8:9-54
+23-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:8:9-54
 24        android:icon="@mipmap/ic_launcher"
-24-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:9:9-43
+24-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:9:9-43
 25        android:label="@string/app_name"
-25-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:10:9-41
+25-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:10:9-41
 26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:11:9-54
+26-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:11:9-54
 27        android:supportsRtl="true"
-27-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:12:9-35
+27-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:12:9-35
 28        android:testOnly="true"
 29        android:theme="@style/Theme.UIComponents" >
-29-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:13:9-50
+29-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:13:9-50
 30        <activity
-30-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:15:9-25:20
+30-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:15:9-25:20
 31            android:name="com.nareshittechnologies.uicomponents.MainActivity"
-31-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:16:13-41
+31-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:16:13-41
 32            android:exported="true" >
-32-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:17:13-36
+32-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:17:13-36
 33            <intent-filter>
-33-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:20:13-24:29
+33-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:20:13-24:29
 34                <action android:name="android.intent.action.MAIN" />
-34-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:21:17-69
-34-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:21:25-66
+34-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:21:17-69
+34-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:21:25-66
 35
 36                <category android:name="android.intent.category.LAUNCHER" />
-36-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:23:17-77
-36-->E:\Kullai\Android\Androidprojects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:23:27-74
+36-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:23:17-77
+36-->E:\Kullai\Android\Public acess\MyAndroidProjects\UIComponents\UIComponents\app\src\main\AndroidManifest.xml:23:27-74
 37            </intent-filter>
 38        </activity>
 39
