@@ -22,11 +22,11 @@ class Information : AppCompatActivity() {
         val currentYear = calendar.get(Calendar.YEAR)
         val yearBirth = currentYear - aAge
         var typeofAge = "Young Aged"
-        if (aAge>45) typeofAge = "Senior Person,\n You have a great maturity,\n You has achieved great Knowledge"
-        else if (aAge>33) typeofAge = "Middle Aged Person,\n You have a great maturity,\n You have  great talents"
-        else if (aAge>24) typeofAge = "Young Aged Person,\n You have evolving in all aspects,\n You are a great companion."
-        else  typeofAge = "Too Young Person,\n You are too young to understand everything,\n You have a great opportunities  to grow in every possible direction and lot to explore"
+        if (aAge>45) typeofAge = "You are born in $yearBirth, you've accumulated a wealth of experience and wisdom, making you a respected senior figure.\n Your maturity and dedication have undoubtedly led you to acquire a vast amount of knowledge, which is truly impressive."
+        else if (aAge>33) typeofAge = "You are Born in $yearBirth, you've entered the vibrant stage of middle age, bringing with it both experience and maturity.\n Your talents are undeniable, adding another layer of dimension to your life."
+        else if (aAge>24) typeofAge = "You are born in $yearBirth, you embody a youthful spirit while demonstrating continuous growth in various aspects.\n This evolution makes you a truly wonderful companion."
+        else  typeofAge = "You are born in $yearBirth, you've exciting opportunities to explore and grow in many directions. With an open mind and a willingness to learn, you can discover a wealth of knowledge and experiences.\n Enjoy the journey!"
 
-        return  " Hi $aName,\n You are born in $yearBirth \n You are a $typeofAge"
+        return  " Hi $aName,\n\n $typeofAge"
     }
 }
