@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:hint="Enter Your Name"
+        android:inputType="text" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtPersonAge"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:hint="Enter Your Age"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnGetInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Info" />
+
+</LinearLayout>
