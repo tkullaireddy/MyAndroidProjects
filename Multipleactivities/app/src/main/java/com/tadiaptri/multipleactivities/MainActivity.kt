@@ -20,6 +20,13 @@ class MainActivity : AppCompatActivity() {
             actInt.putExtra("NAME", name)
             actInt.putExtra("AGE", age)
 
+            val lst = arrayOf(name,age)
+
+
+            actInt.putExtra("KULLAI",lst)
+
+
+
             startActivity(actInt)
         }
 

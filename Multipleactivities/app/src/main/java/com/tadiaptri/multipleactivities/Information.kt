@@ -11,8 +11,15 @@ class Information : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information)
 
-        val name:String = intent.extras?.getString("NAME").toString()
-        val age:Int = intent.extras?.getString("AGE").toString().toInt()
+        var name:String = intent.extras?.getString("NAME").toString()
+        var age:Int = intent.extras?.getString("AGE").toString().toInt()
+
+        val strlst: List<String>? = intent.extras?.getStringArray("KULLAI")?.toList()
+
+
+        name = strlst?.get(0).toString()
+        age = strlst?.get(1).toString().toInt()
+
 
         findViewById<TextView>(R.id.textView).text=GetInformation(name,age)
 }
@@ -20,6 +27,7 @@ class Information : AppCompatActivity() {
     private fun GetInformation(aName:String, aAge:Int ):String{
         val calendar = Calendar.getInstance()
         val currentYear = calendar.get(Calendar.YEAR)
+
         val yearBirth = currentYear - aAge
         val typeofAge = if (aAge>45) "You are born in $yearBirth, you've accumulated a wealth of experience and wisdom, making you a respected senior figure.\n Your maturity and dedication have undoubtedly led you to acquire a vast amount of knowledge, which is truly impressive."
         else if (aAge>33) "You are Born in $yearBirth, you've entered the vibrant stage of middle age, bringing with it both experience and maturity.\n Your talents are undeniable, adding another layer of dimension to your life."
