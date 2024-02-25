@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MyVegetables</string>
+    <string name="kg">1Kg</string>
+    <string name="large_piece">1 large piece</string>
+    <string name="medium_piece">1 medium piece</string>
+    <string name="small_piece">1 small piece</string>
+    <string name="onion">Onion</string>
+    <string name="onion_desc">The onion (Allium cepa) is a common and versatile vegetable belonging to the lily family (Liliaceae). It\'s most known for its pungent flavor and tear-inducing properties when chopped.</string>
+    <string name="tomato">Tomato</string>
+    <string name="tomato_desc">The tomato (Solanum lycopersicum) is a fruit, although often referred to as a vegetable, that is native to South America. It is a member of the nightshade family, which also includes potatoes, eggplants, and peppers. Tomatoes are a versatile ingredient used in many cuisines around the world.</string>
+    <string name="baingan">Baingan</string>
+    <string name="baingan_desc">Baingan is the Hindi word for eggplant, a versatile vegetable native to India and widely cultivated in tropical and subtropical regions around the world.</string>
+    <string name="bitter_guard">Bitter Guard</string>
+    <string name="bitter_guard_desc">Bitter gourd, also known as bitter melon, karela (India), nigauri (Japan), goya (Okinawa), ampalaya (Philippines), and ku-gua (China), is a tropical and subtropical vine of the Cucurbitaceae family, widely cultivated in Asia, Africa, and the Caribbean for its edible fruit.</string>
+    <string name="bottle_guard">Bottle Guard</string>
+    <string name="bottle_guard_desc">The bottle gourd, also known as opo squash, long melon, lau ki (Hindi), calabash, and opo squash, is a versatile fruit/vegetable native to Africa but cultivated worldwide for its diverse uses.</string>
+    <string name="broccoli">Broccoli</string>
+    <string name="broccoli_desc">"Broccoli is a vibrant green vegetable belonging to the cabbage family (Brassicaceae) and is known for its resemblance to a miniature tree. "</string>
+    <string name="capsicum_green">Capsicum Green</string>
+    <string name="capsicum_green_desc">Green capsicum, also commonly called a green bell pepper, is the unripe fruit of the Capsicum annuum plant, belonging to the nightshade family alongside potatoes, tomatoes, and eggplants.</string>
+    <string name="capsicum_red">Capsicum Red</string>
+    <string name="capsicum_red_desc">Red capsicum, also known as red bell pepper or sweet red pepper, is a type of capsicum that is similar in shape and flavour to other bell peppers, but turns a vibrant red color when fully ripe.</string>
+    <string name="carrot">Carrot</string>
+    <string name="carrot_desc">The carrot, a familiar and versatile root vegetable, is enjoyed worldwide for its sweet flavor, vibrant color, and numerous health benefits.</string>
+    <string name="cucumber">Cucumber</string>
+    <string name="cucumber_desc">"The cucumber (Cucumis sativus) is a widely cultivated creeping vine plant in the gourd family (Cucurbitaceae) that bears cylindrical to spherical fruits, which are used as culinary vegetables. "</string>
+    <string name="potato">Potato</string>
+    <string name="potato_desc">The potato (Solanum tuberosum) is a starchy, tuberous root vegetable native to the Andean region of South America.</string>
+    <string name="pumpkin">Pumpkin</string>
+    <string name="pumpkin_desc">The pumpkin, a vibrant symbol of autumn, is more than just a festive decoration for Halloween and Thanksgiving. It\'s a delicious and versatile fruit (technically a type of berry) with a rich history and diverse uses.</string>
+</resources>

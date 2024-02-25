@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:background="@drawable/border">
+
+    <ImageView
+        android:id="@+id/imageofVegetable"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/onion" />
+
+    <TextView
+        android:id="@+id/nameofVegetable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/comic_neue_light_italic"
+        android:gravity="center"
+        android:text="Onion"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/priceofVegetable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageofVegetable"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/priceofVegetable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Name"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/DescofVegetable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageofVegetable"
+        app:layout_constraintTop_toBottomOf="@+id/nameofVegetable" />
+
+    <TextView
+        android:id="@+id/DescofVegetable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/varta_light"
+        android:gravity="center"
+        android:text="Name"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageofVegetable"
+        app:layout_constraintTop_toBottomOf="@+id/priceofVegetable" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
