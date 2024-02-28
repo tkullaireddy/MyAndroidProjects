@@ -1,6 +1,7 @@
 package com.tadipatri.myvegetables
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ class Vegetableadapter(val context: Context, val Vegetables:List<Vegetable>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VegetableViewHolder {
-        val v: View = LayoutInflater.from(context).inflate(R.layout.viewoneveg,parent,false)
+        val v: View = LayoutInflater.from(context).inflate(R.layout.viewonevegvertical,parent,false)
         return VegetableViewHolder(v)
     }
 
@@ -40,13 +41,12 @@ class Vegetableadapter(val context: Context, val Vegetables:List<Vegetable>):
         holder.vegprice.text = "₹${veg.price} per ${veg.priceunit}"
 
 
-        holder.imgview.setOnClickListener{
+        holder.v.setOnClickListener{
             Toast.makeText(context,"${veg.name} - ₹${veg.price} per ${veg.priceunit}", Toast.LENGTH_SHORT).show()
+//            context.startActivity(Intent(context,DetailsActivity::class.java).putExtra("DATA",favMovie))
+
         }
 
-        holder.descofveg.setOnClickListener{
-            Toast.makeText(context,veg.description, Toast.LENGTH_SHORT).show()
-        }
 
     }
 
