@@ -42,9 +42,9 @@ class BooksAdapter(private val context: Context, private val books:List<Book>): 
         holder.tvTitle.text = book.title
         holder.tvDesc.text = book.imageURL
 
-        Glide.with(context)
-            .load(book.imageURL)
-            .into(holder.imgBook)
+//        Glide.with(context)
+//            .load(book.imageURL)
+//            .into(holder.imgBook)
 
         holder.v.setOnClickListener {
             Toast.makeText(context, book.author, Toast.LENGTH_LONG).show()
