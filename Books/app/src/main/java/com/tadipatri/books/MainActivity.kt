@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 pbStatus.visibility = View.VISIBLE
-                val bookdata: FetchBooksData = FetchBooksData(this, rvmain, pbStatus)
+                val bookdata: FetchBooksData = FetchBooksData(applicationContext, rvmain, pbStatus)
 
                 bookdata.execute("https://www.googleapis.com/books/v1/volumes?q=${txttopic.text}")
 //                Snackbar.make(rvmain, "OK", Snackbar.LENGTH_LONG).show()

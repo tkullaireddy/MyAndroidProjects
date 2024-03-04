@@ -116,14 +116,24 @@ class FetchBooksData(val context: Context, val rvmain: RecyclerView, val pb: Pro
             val volInfo: JSONObject = book.getJSONObject("volumeInfo")
             val title: String = checkandJsonString(volInfo,"title")
             val description: String = checkandJsonString(volInfo,"description")
-            val author: String = checkandJsonString(volInfo,"subtitle")
+            var authors:String = ""
+            if (volInfo.has("authors")) {
+                var ss = volInfo.getJSONArray("authors")
+                var i = 0
+                while (i < ss.length()) {
+                    authors += (if (i == 0) "" else ",") + ss[i]
+                    i++
+                }
+            }
+
+
             val images: JSONObject = volInfo.getJSONObject("imageLinks")
 
 
             val imageURL: String = checkandJsonString(images,"thumbnail")
             val downloadURL: String = checkandJsonString(book,"selfLink")
 
-            val singlebook: Book = Book(title, author, description, imageURL, downloadURL)
+            val singlebook: Book = Book(title, authors, description, imageURL, downloadURL)
             retobj.add(singlebook)
 
             i++

@@ -6,20 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:layout_editor_absoluteX="115dp"-->
-<!--        tools:layout_editor_absoluteY="118dp"-->
-<!--        tools:srcCompat="@tools:sample/avatars" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        tools:layout_editor_absoluteX="115dp"-->
+    <!--        tools:layout_editor_absoluteY="118dp"-->
+    <!--        tools:srcCompat="@tools:sample/avatars" />-->
     <EditText
         android:id="@+id/txttopic"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:background="@drawable/border"
-        android:text="civil engineering" />
+        android:gravity="center"
+        android:text="civil engineering"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"
@@ -33,7 +37,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/txttopic"
-        app:layout_constraintTop_toBottomOf="@+id/txttopic">
+        app:layout_constraintTop_toBottomOf="@+id/txttopic"
+        app:layout_constraintVertical_bias="1.0">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -45,6 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/pbStatus"
         android:layout_width="wrap_content"
@@ -57,15 +63,18 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
+        android:background="#2244FF"
+        app:layout_constraintBottom_toTopOf="@+id/rvMain"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/refreshicon4" />
-
-
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txttopic"
+        app:layout_constraintTop_toTopOf="@+id/txttopic"
+        app:srcCompat="@drawable/baseline_search_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
