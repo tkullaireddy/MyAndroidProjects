@@ -19,6 +19,11 @@ import com.tadipatri.books.BooksAdapter.BooksViewHolder
 
 class BooksAdapter( val context: Context,  val books:List<Book>): Adapter<BooksViewHolder>(){
 
+//    constructor(context: Context, items: List<Items>) : super() {
+//        this.context = context
+//        this.items = items
+//    }
+
     class BooksViewHolder(val v: View): ViewHolder(v){
         val imgBook: ImageView = v.findViewById(R.id.imgBook)
         val tvTitle: TextView = v.findViewById(R.id.tvBookTitle)
@@ -63,3 +68,41 @@ class BooksAdapter( val context: Context,  val books:List<Book>): Adapter<BooksV
         }
     }
 }
+
+
+
+//class BooksAdapter : Adapter<BooksAdapter.BooksViewHolder> {
+//
+//    val context: Context
+//    val items: List<Items>
+//
+//    constructor(context: Context, items: List<Items>) : super() {
+//        this.context = context
+//        this.items = items
+//    }
+//
+//    class BooksViewHolder(v:View):ViewHolder(v){
+//        val iv:ImageView = v.findViewById(R.id.book_thumbnail)
+//        val title:TextView = v.findViewById(R.id.book_title)
+//        val authors:TextView = v.findViewById(R.id.book_authors)
+//    }
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
+//        return BooksViewHolder(LayoutInflater.from(context).inflate(R.layout.one_book_detail,parent,false))
+//    }
+//
+//    override fun getItemCount(): Int {
+//        return items.size
+//    }
+//
+//    override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
+//        Glide.with(context)
+//            .load(items.get(position).volumeInfo?.imageLinks?.thumbnail)
+//            .into(holder.iv)
+//
+//        holder.title.text = items.get(position).volumeInfo?.title
+//
+//        holder.authors.text = items.get(position).volumeInfo?.authors?.get(0)
+//
+//    }
+//}

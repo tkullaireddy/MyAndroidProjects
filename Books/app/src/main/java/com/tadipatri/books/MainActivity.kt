@@ -9,11 +9,22 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.provider.FontsContractCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import org.json.JSONArray
+import org.json.JSONObject
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,10 +36,6 @@ class MainActivity : AppCompatActivity() {
         val tvStatus: TextView = findViewById(R.id.tvStatus)
         val pbStatus: ProgressBar = findViewById(R.id.pbStatus)
         val fvbRefesh: FloatingActionButton = findViewById(R.id.floatingActionButton)
-
-//        Glide.with(this)
-//            .load("http://books.google.com/books/content?id=YRFrAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api")
-//            .into(findViewById(R.id.imageView))
 
         rvmain.visibility = View.INVISIBLE
         tvStatus.visibility = View.VISIBLE
@@ -44,14 +51,14 @@ class MainActivity : AppCompatActivity() {
                 rvmain.visibility = View.VISIBLE
                 tvStatus.visibility = View.VISIBLE
 
-
-
-
                 pbStatus.visibility = View.VISIBLE
-                val bookdata: FetchBooksData = FetchBooksData(applicationContext, rvmain, pbStatus)
 
-                bookdata.execute("https://www.googleapis.com/books/v1/volumes?q=${txttopic.text}")
-//                Snackbar.make(rvmain, "OK", Snackbar.LENGTH_LONG).show()
+                doNetworkRequest("https://www.googleapis.com/books/v1/volumes?q=${txttopic.text}",pbStatus)
+
+//                val bookdata: FetchBooksData = FetchBooksData(applicationContext, rvmain, pbStatus)
+//
+//                bookdata.execute("https://www.googleapis.com/books/v1/volumes?q=${txttopic.text}")
+////                Snackbar.make(rvmain, "OK", Snackbar.LENGTH_LONG).show()
 
             } else {
                 tvStatus.visibility = View.VISIBLE
@@ -61,4 +68,55 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+    private fun doNetworkRequest(link: String, pb: ProgressBar) {
+        val queue:RequestQueue = Volley.newRequestQueue(this)
+
+        val stringRequest:StringRequest = StringRequest(Request.Method.GET, link, { response ->
+            pb.visibility = ProgressBar.INVISIBLE
+            val g: Gson = Gson()
+            val sd:Bookssearchdata = g.fromJson(response,Bookssearchdata::class.java)
+            val rv: RecyclerView = findViewById(R.id.rvMain)
+            val Books =processJsonData(sd.items)
+            val adapter: BooksAdapter = BooksAdapter(applicationContext,Books )
+            rv.adapter = adapter
+            rv.layoutManager = LinearLayoutManager(this)
+
+        }, { error ->
+            // Implementation goes here
+
+        })
+
+        queue.add(stringRequest)
+    }
+
+    fun processJsonData(  books:List<Items>) :List<Book> {
+        val retobj: MutableList<Book> = mutableListOf<Book>()
+
+        for (bk in books) {
+            var authors: String = ""
+            var ss = bk.volumeInfo?.authors
+            var i = 0
+            var cnt:Int =0
+            cnt = ss?.size!!
+            while (i < cnt) {
+                authors += (if (i == 0) "" else ",") + ss[i]
+                i++
+            }
+            val singlebook: Book =
+                Book(
+                    bk.volumeInfo?.title.toString(),
+                    authors,
+                    bk.volumeInfo?.description.toString(),
+                    bk.volumeInfo?.imageLinks?.thumbnail.toString(),
+                    bk.selfLink.toString()
+                )
+            retobj.add(singlebook)
+        }
+
+        return retobj
+
+    }
+
 }

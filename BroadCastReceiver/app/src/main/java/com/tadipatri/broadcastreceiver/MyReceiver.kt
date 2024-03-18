@@ -20,12 +20,12 @@ class MyReceiver (val txt:TextView): BroadcastReceiver() {
             Intent.ACTION_AIRPLANE_MODE_CHANGED -> {
                 val isAirplaneModeOn = intent.getBooleanExtra("state", false)
                 txt.text = "${intent.action.toString()} = ${isAirplaneModeOn}"
-
             }
-
+            Intent.ACTION_HEADSET_PLUG -> {
+                txt.text = " HEADSET = ${intent.action.toString()} "
+            }
             Intent.ACTION_CALL -> {
                 txt.text = " call = ${intent.action.toString()} "
-
             }
             Intent.ACTION_ANSWER ->{
                 val answer = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER)
@@ -34,14 +34,10 @@ class MyReceiver (val txt:TextView): BroadcastReceiver() {
             Intent.ACTION_DIAL->{
                 txt.text = " dial = ${intent.action.toString()} "
             }
-
             else -> {
                 txt.text = "${intent.action.toString()} "
             }
         }
-
-
-
 
     }
 }

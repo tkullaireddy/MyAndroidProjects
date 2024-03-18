@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.rvMain)
         val da = Vegetableadapter(this, createVegetableData() )
         rv.adapter=da
-        rv.layoutManager = GridLayoutManager(this,2)  //line(this,2)
+        rv.layoutManager = GridLayoutManager(this,1)  //line(this,2)
 
     }
 

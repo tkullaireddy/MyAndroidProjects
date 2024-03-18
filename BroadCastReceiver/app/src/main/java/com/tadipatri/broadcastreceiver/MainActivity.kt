@@ -3,6 +3,7 @@ package com.tadipatri.broadcastreceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         filter.addAction(Intent.ACTION_POWER_CONNECTED)
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED)
         filter.addAction(Intent.ACTION_POWER_USAGE_SUMMARY)
+        filter.addAction(Intent.ACTION_HEADSET_PLUG)
 
 
         val filter1: IntentFilter = IntentFilter()
@@ -43,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         unregisterReceiver(MyReceiver(txt))
         unregisterReceiver(PhoneStateReceiver(txt))
+    }
+
+    fun sendCustomBroadcast(view: View) {
+        sendBroadcast(Intent(PhoneStateReceiver.CUSTOM_BROADCAST).putExtra("CUSTOM","Kullai Reddy"))
     }
 
 }

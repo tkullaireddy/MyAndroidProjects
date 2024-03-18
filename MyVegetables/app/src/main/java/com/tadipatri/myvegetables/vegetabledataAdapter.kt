@@ -24,7 +24,7 @@ class Vegetableadapter(val context: Context, val Vegetables:List<Vegetable>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VegetableViewHolder {
-        val v: View = LayoutInflater.from(context).inflate(R.layout.viewonevegvertical,parent,false)
+        val v: View = LayoutInflater.from(context).inflate(R.layout.viewoneveg, parent, false)
         return VegetableViewHolder(v)
     }
 

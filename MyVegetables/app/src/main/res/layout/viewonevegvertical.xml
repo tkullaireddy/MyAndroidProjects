@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imageofVegetable"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="105dp"
         app:layout_constraintBottom_toTopOf="@+id/nameofVegetable"
         app:layout_constraintEnd_toEndOf="parent"

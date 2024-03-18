@@ -11,6 +11,11 @@ import android.widget.Toast
 
 class PhoneStateReceiver(val txt: TextView) : BroadcastReceiver() {
 
+
+    companion object{
+        val CUSTOM_BROADCAST:String = "com.tadipatri.CUSTOM_BROADCAST"
+    }
+
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
