@@ -55,16 +55,26 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/save_btn" />
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updatebtn" />
+        app:layout_constraintTop_toBottomOf="@+id/save_btn"/>
+<!--    <TextView-->
+<!--        android:id="@+id/result"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/updatebtn" />-->
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -76,12 +86,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/save_btn" />
 
-    <Button
-        android:id="@+id/updatebtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Update Data"
-        app:layout_constraintEnd_toEndOf="@+id/load_btn"
-        app:layout_constraintStart_toStartOf="@+id/save_btn"
-        app:layout_constraintTop_toBottomOf="@+id/save_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

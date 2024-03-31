@@ -3,11 +3,8 @@ package com.nareshittechnologies.frtdb
 import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.snackbar.Snackbar
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -52,39 +49,42 @@ class MainActivity : AppCompatActivity() {
 
         binding.loadBtn.setOnClickListener {
             // tODO: write code to load Data from FRTDB
-            binding.progressBar.visibility = ProgressBar.VISIBLE
-            val postListener:ValueEventListener = object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    // Actual logic of reading the data starts here
-                    binding.progressBar.visibility = ProgressBar.INVISIBLE
-                    binding.result.text = ""
-                    for(s in snapshot.children){
-                        val id:String? = s.key
-                        val p:PersonData = s.getValue(PersonData::class.java) as PersonData
-                        binding.result.append("${id}  ${p.name}  ${p.age}\n")
-                    }
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    binding.progressBar.visibility = ProgressBar.INVISIBLE
-                    Toast.makeText(applicationContext,"Data Not ready", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            reference.child("Person").addValueEventListener(postListener)
+            loaddataFromDB()
         }
 
-        binding.updatebtn.setOnClickListener {
-            // Update one value using the key
-          /*  val p:PersonData = PersonData("TPKR", 32);
-            reference.child("Person").child("-Nu9ebuqDj9x_TbYuyuW").setValue(p).addOnSuccessListener {
-                Toast.makeText(applicationContext,"Updated",Toast.LENGTH_LONG).show()
-            }*/
-            reference.child("Person").child("-Nu4ghSGfOh9b5kiqA6-").removeValue().addOnSuccessListener {
-                Toast.makeText(applicationContext,"Removed",Toast.LENGTH_LONG).show()
+        loaddataFromDB()
+
+
+    }
+    fun loaddataFromDB(){
+        binding.progressBar.visibility = ProgressBar.VISIBLE
+        val postListener:ValueEventListener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val persons = mutableListOf<PersonDatawithID>()
+
+                for(s in snapshot.children) {
+                    val id: String? = s.key
+                    val p: PersonData = s.getValue(PersonData::class.java) as PersonData
+//                        binding.result.append("${id}  ${p.name}  ${p.age}\n")
+                    persons.add(PersonDatawithID(id!! , p.name, p.age))
+                }
+
+                val da = PersonDataAdapter(applicationContext, persons,reference)
+                binding.rcvMain.adapter=da
+                binding.rcvMain.layoutManager = GridLayoutManager(applicationContext,2)  //line(this,2)
+
+                // Actual logic of reading the data starts here
+                binding.progressBar.visibility = ProgressBar.INVISIBLE
+                // Toast.makeText( applicationContext,"Data Fetched - ${persons.count()}", Toast.LENGTH_SHORT).show()
             }
 
+            override fun onCancelled(error: DatabaseError) {
+                binding.progressBar.visibility = ProgressBar.INVISIBLE
+                Toast.makeText(applicationContext,"Data Not ready", Toast.LENGTH_LONG).show()
+            }
         }
+
+        reference.child("Person").addValueEventListener(postListener)
     }
 }
