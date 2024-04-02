@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813501972662",
+    "project_id": "kullaireddyt-5c976",
+    "storage_bucket": "kullaireddyt-5c976.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813501972662:android:caad9158b665456ae72617",
+        "android_client_info": {
+          "package_name": "com.tadipatri.firebasertdb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO_Su-r0OX7p-4zyzgKDtJ_uOlmCJuPP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
