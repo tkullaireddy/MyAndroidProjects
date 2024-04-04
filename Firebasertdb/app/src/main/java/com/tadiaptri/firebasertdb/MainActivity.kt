@@ -23,7 +23,7 @@ import com.tadiaptri.firebasertdb.databinding.ActivityMainBinding
 import java.io.ByteArrayOutputStream
 
 class MainActivity : AppCompatActivity() {
-    val databseName = getString(R.string.dbname)
+    lateinit var databseName:String
     lateinit var reference: DatabaseReference
     lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val v = binding.root
         setContentView(v)
+
+        databseName = getString(R.string.dbname)
 
         reference = Firebase.database.reference
 
@@ -42,15 +44,7 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = ProgressBar.VISIBLE
             val name: String = binding.personName.text.toString()
             val age: Int = binding.personAge.text.toString().toInt()
-            // I want to push each entry into a unique code.
-            val bitmap =
-                BitmapFactory.decodeResource(applicationContext.resources, R.drawable.photo)
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream) // Adjust quality
-            val imageBytes = byteArrayOutputStream.toByteArray()
-
-            val imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
-
+            val imageString= ImageConversionUtilities.getImageStringFromImageview(binding.imageView.drawable)
 
             val p: PersonData = PersonData(name, age, imageString)
             // Now push this to frtdb
@@ -70,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             loaddataFromDB()
         }
 
-        loaddataFromDB()
+        //loaddataFromDB()
 
     }
 
