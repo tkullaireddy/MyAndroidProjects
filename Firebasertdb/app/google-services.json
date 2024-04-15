@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:813501972662:android:caad9158b665456ae72617",
+        "mobilesdk_app_id": "1:813501972662:android:5b4b9c19ee570725e72617",
         "android_client_info": {
-          "package_name": "com.tadipatri.firebasertdb"
+          "package_name": "com.tadiaptri.firebasertdb"
         }
       },
       "oauth_client": [],
