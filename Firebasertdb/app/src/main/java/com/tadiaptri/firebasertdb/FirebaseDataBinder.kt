@@ -1,6 +1,8 @@
 package com.tadiaptri.firebasertdb
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
@@ -14,6 +16,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import java.io.ByteArrayOutputStream
@@ -104,8 +107,6 @@ class PersonDataAdapter(val context: Context, val persons:List<PersonDatawithID>
         }
 
     }
-
-
 
 }
 class ImageConversionUtilities {

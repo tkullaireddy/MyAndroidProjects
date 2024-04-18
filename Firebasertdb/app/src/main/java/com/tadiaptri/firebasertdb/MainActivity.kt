@@ -25,13 +25,21 @@ import com.tadiaptri.firebasertdb.databinding.ActivityMainBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.Manifest
+import android.app.Activity
+import android.content.ContentValues
+import android.content.Intent
+import android.provider.MediaStore
 import android.widget.ImageView
+import androidx.camera.core.ImageCaptureException
+import androidx.core.net.toUri
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var databseName:String
+    lateinit var databseName: String
     lateinit var reference: DatabaseReference
-    lateinit var binding:ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,24 +52,19 @@ class MainActivity : AppCompatActivity() {
         databseName = getString(R.string.dbname)
 
 
-        // Request camera permissions
-        if (allPermissionsGranted()) {
-            //startCamera()
-        } else {
-            requestPermissions()
-        }
-
-
         reference = Firebase.database.reference
 
         binding.progressBar.visibility = ProgressBar.INVISIBLE
+
+        binding.imageView.setOnClickListener { GetImageFromCameraX() }
 
         binding.saveBtn.setOnClickListener {
             // tODO write code to save data on to firebase real time databases
             binding.progressBar.visibility = ProgressBar.VISIBLE
             val name: String = binding.personName.text.toString()
             val age: Int = binding.personAge.text.toString().toInt()
-            val imageString= ImageConversionUtilities.getImageStringFromImageview(binding.imageView.drawable)
+            val imageString =
+                ImageConversionUtilities.getImageStringFromImageview(binding.imageView.drawable)
 
             val p: PersonData = PersonData(name, age, imageString)
             // Now push this to frtdb
@@ -83,10 +86,9 @@ class MainActivity : AppCompatActivity() {
 
         loaddataFromDB()
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    private fun loaddataFromDB(){
+    private fun loaddataFromDB() {
         binding.progressBar.visibility = ProgressBar.VISIBLE
         val postListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -112,117 +114,53 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 binding.progressBar.visibility = ProgressBar.INVISIBLE
-                Toast.makeText(applicationContext,"Data Not ready", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Data Not ready", Toast.LENGTH_LONG).show()
             }
         }
 
         reference.child(databseName).addValueEventListener(postListener)
     }
 
-    fun CapturePhoto(view: View) {
-       // binding.imageView.visibility = ImageView.INVISIBLE
-        startCamera()
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == requestCode && resultCode == Activity.RESULT_OK) {
+//            val result = data?.getStringExtra("resultKey") ?: ""
+//            // Use the 'result' variable here
+//
+//            val resultIntent = Intent()
+//            resultIntent.putExtra("resultKey", result)
+//
+//        }
+//    }
+
+
+    private fun GetImageFromCameraX() {
+
+
+        val intent = Intent(this, CameraMainActivity::class.java)
+        intent.putExtra("dataKey", "Some data to send")
+        val requestCode = 1 // Choose a unique code for your request
+
+        startActivityForResult(intent, requestCode)
+
+
+        //intent.data
+
+
     }
 
-    private var imageCapture: ImageCapture? = null
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == requestCode && resultCode == Activity.RESULT_OK) {
+            val result = data?.getStringExtra("resultKey") ?: ""
 
-
-    // Select back camera as a default
-    var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-    private fun startCamera() {
-
-       // binding.viewFinder.visibility = View.VISIBLE
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
-            // Used to bind the lifecycle of cameras to the lifecycle owner
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-
-            // Preview
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-                }
-
-            imageCapture = ImageCapture.Builder()
-                .build()
-
-            try {
-                // Unbind use cases before rebinding
-                cameraProvider.unbindAll()
-
-                // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture)
-
-            } catch(exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
-            }
-
-        }, ContextCompat.getMainExecutor(this))
-
-        //binding.viewFinder.visibility = View.INVISIBLE
-    }
-
-    private lateinit var cameraExecutor: ExecutorService
-
-    // For requesting the permissions
-    private val activityResultLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions())
-        { permissions ->
-            // Handle Permission granted/rejected
-            var permissionGranted = true
-            permissions.entries.forEach {
-                if (it.key in REQUIRED_PERMISSIONS && it.value == false)
-                    permissionGranted = false
-            }
-            if (!permissionGranted) {
-                Toast.makeText(baseContext,
-                    "Permission request denied",
-                    Toast.LENGTH_SHORT).show()
-            } else {
-                startCamera()
-            }
+            if (result!="")
+                binding.imageView.setImageURI(result.toUri())
+            // Use the 'result' variable here
         }
-
-    private fun requestPermissions() {
-        activityResultLauncher.launch(REQUIRED_PERMISSIONS)
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-
-    companion object {
-        private const val TAG = "CameraXApp"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private val REQUIRED_PERMISSIONS =
-            mutableListOf (
-                Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO
-            ).apply {
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                }
-            }.toTypedArray()
-    }
-
-    fun ChangeCameraDirection(view: View) {
-
-         if(cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-             cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
-        else
-             cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-        startCamera()
-    }
 }
+
