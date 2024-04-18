@@ -1,17 +1,19 @@
 package com.tadiaptri.firebasertdb
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.util.Base64
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -20,12 +22,18 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.tadiaptri.firebasertdb.databinding.ActivityMainBinding
-import java.io.ByteArrayOutputStream
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import android.Manifest
+import android.widget.ImageView
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var databseName:String
     lateinit var reference: DatabaseReference
     lateinit var binding:ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,6 +42,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(v)
 
         databseName = getString(R.string.dbname)
+
+
+        // Request camera permissions
+        if (allPermissionsGranted()) {
+            //startCamera()
+        } else {
+            requestPermissions()
+        }
+
 
         reference = Firebase.database.reference
 
@@ -66,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         loaddataFromDB()
 
+        cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
     private fun loaddataFromDB(){
@@ -99,5 +117,112 @@ class MainActivity : AppCompatActivity() {
         }
 
         reference.child(databseName).addValueEventListener(postListener)
+    }
+
+    fun CapturePhoto(view: View) {
+       // binding.imageView.visibility = ImageView.INVISIBLE
+        startCamera()
+    }
+
+    private var imageCapture: ImageCapture? = null
+
+
+    // Select back camera as a default
+    var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+    private fun startCamera() {
+
+       // binding.viewFinder.visibility = View.VISIBLE
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
+        cameraProviderFuture.addListener({
+            // Used to bind the lifecycle of cameras to the lifecycle owner
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+
+            // Preview
+            val preview = Preview.Builder()
+                .build()
+                .also {
+                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                }
+
+            imageCapture = ImageCapture.Builder()
+                .build()
+
+            try {
+                // Unbind use cases before rebinding
+                cameraProvider.unbindAll()
+
+                // Bind use cases to camera
+                cameraProvider.bindToLifecycle(
+                    this, cameraSelector, preview, imageCapture)
+
+            } catch(exc: Exception) {
+                Log.e(TAG, "Use case binding failed", exc)
+            }
+
+        }, ContextCompat.getMainExecutor(this))
+
+        //binding.viewFinder.visibility = View.INVISIBLE
+    }
+
+    private lateinit var cameraExecutor: ExecutorService
+
+    // For requesting the permissions
+    private val activityResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions())
+        { permissions ->
+            // Handle Permission granted/rejected
+            var permissionGranted = true
+            permissions.entries.forEach {
+                if (it.key in REQUIRED_PERMISSIONS && it.value == false)
+                    permissionGranted = false
+            }
+            if (!permissionGranted) {
+                Toast.makeText(baseContext,
+                    "Permission request denied",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                startCamera()
+            }
+        }
+
+    private fun requestPermissions() {
+        activityResultLauncher.launch(REQUIRED_PERMISSIONS)
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
+    }
+
+    companion object {
+        private const val TAG = "CameraXApp"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private val REQUIRED_PERMISSIONS =
+            mutableListOf (
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO
+            ).apply {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+            }.toTypedArray()
+    }
+
+    fun ChangeCameraDirection(view: View) {
+
+         if(cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
+             cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+        else
+             cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+        startCamera()
     }
 }
