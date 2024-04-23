@@ -39,14 +39,18 @@ android {
 }
 
 dependencies {
-    implementation ("net.sourceforge.jtds:jtds:1.3.8")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(files("C:\\Kullai\\GitHub\\MyAndroidProjects\\DbView\\app\\libs\\jtds-1.3.1.jar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("net.sourceforge.jtds:jtds:1.3.1")
 
 }
